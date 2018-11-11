@@ -1,0 +1,26 @@
+{
+  "name": "complaint-forum",
+  "version": "1.0.1",
+  "description": "",
+  "private": true,
+  "scripts": {
+    "start": "node server"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "date-and-time": "^0.6.2",
+    "dotenv": "^5.0.1",
+    "express": "^4.16.2",
+    "express-session": "^1.15.6",
+    "http-errors": "^1.6.3",
+    "joi": "^13.2.0",
+    "mongoose": "^5.1.1"
+  },
+  "author": "Sonu Kumar Singh",
+  "license": "IPC",
+  "devDependencies": {
+    "@angular/cli": "^6.0.8"
+  }
+}
