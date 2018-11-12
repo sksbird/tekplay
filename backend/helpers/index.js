@@ -1,7 +1,7 @@
 'use strict'
 
 module.exports  = {
-    schemas: require('./schemas.helper'),
+    schemas: require('./validation.schemas.helper'),
     validations: require('./validations.helper'),  
-    permissons: require('./authenticate.helper')
+    auth: require('./middleware.helper')
 };

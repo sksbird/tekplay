@@ -9,12 +9,20 @@
 #7. Enter command "ng serve"
 
 // Backend endpoints
-#1. 
-#2.
-#3. 
-#4. 
-#5. 
-#6.
+
+#1. Add User [Post]: /users/new
+#2. Edit User [Put]: /users/edit/:id
+#3. Delete User [delete] : /users/delete/:id
+#4. Get Users [get]: /users
+#5. Get User [get]: /users/:id
+
+#1. Add Complaint [Post]: /complaints/new
+#2. Edit Complaint [put]: /complaints/edit/:id
+#3. Delete Complaint [delete]: /complaints/delete/:id
+#4. Get Complaints [get]: /complaints
+#5. Get Complaint [get]: /complaints/:id
+
+#1. Authenticate [Post]: /auth/authenticate
 
 // Frontend endpoints
 

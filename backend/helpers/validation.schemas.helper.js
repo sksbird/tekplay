@@ -7,15 +7,33 @@ const config = require('../config');
 module.exports = {
 
     idSchema: joi.object().keys({
-        param: joi.number().integer.min(1).required().error(new Error('ID is missing or invalid in parameters'))
+        param: joi.string().trim().regex(/^[0-9a-fA-F]{24}$/).required().error(new Error('ID should be valid objectID in parameters'))
     }),
     
-    employeeInsert: joi.object().keys({
+    userInsert: joi.object().keys({
         name: joi.string().trim().allow(null).error(new Error('name is missing or invalid')),
         email: joi.string().trim().email().required().error(new Error('email is missing or invalid')),
         password: joi.string().min(3).max(50).required().error(new Error('password is require and should be min 3 and max 50 character is long')),     
-        type: joi.string().valid(['customer', 'agent']).default('customer').error(new Error('type is should be customer or agent')),
-        mobile_number: joi.string().trim().error(new Error('mobile_number should be valid mobile number')),
-    })
-   
+        userType: joi.string().valid(['customer', 'agent']).default('customer').error(new Error('userType is should be customer or agent')),
+        mobileNumber: joi.string().trim().min(10).max(10).required().error(new Error('mobileNumber should be valid mobile number')),
+    }),
+
+    userUpdate: joi.object().keys({
+        name: joi.string().trim().allow(null).error(new Error('name is missing or invalid')),
+        email: joi.string().trim().email().allow(null).error(new Error('email is missing or invalid')),    
+        userType: joi.string().valid(['customer', 'agent']).default('customer').allow(null).error(new Error('userType is should be customer or agent')),
+        mobileNumber: joi.string().trim().min(10).max(10).allow(null).error(new Error('mobileNumber should be valid mobile number')),
+    }),
+
+    complaintInsert: joi.object().keys({
+        user: joi.string().trim().regex(/^[0-9a-fA-F]{24}$/).required().error(new Error('user should be valid objectID')),
+        heading: joi.string().trim().required().error(new Error('heading is missing or invalid')),
+        description: joi.string().trim().allow(null).required().error(new Error('description is missing or invalid'))
+    }),
+
+    complaintUpdate: joi.object().keys({
+        heading: joi.string().trim().allow(null).error(new Error('heading is missing or invalid')),
+        description: joi.string().trim().allow(null).required().error(new Error('description is missing or invalid'))
+    }),   
+
 };

@@ -1,6 +1,5 @@
+'use strict';
 
-module.exports = {
-    auth: require('./auth.config'),
-    constants: require('./constant.config'),
-    options: require('./options.config')
-}
+module.exports.auth =  require('./auth.config');
+module.exports.constants = require('./constant.config');
+module.exports.options =  require('./options.config');

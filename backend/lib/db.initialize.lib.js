@@ -2,7 +2,7 @@
 
 require('dotenv').config();
 const mongoose = require('mongoose');
-const constants = require('../config/constant');
+const config = require('../config');
 
 const dbUri = `mongodb://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.HOST_NAME}:${process.env.HOST_PORT}/${process.env.DB_NAME}`;
 const dbOptions = {
@@ -21,8 +21,8 @@ mongoose.connect(dbUri, dbOptions).then(() => console.log('Connected to database
 const db = {};
 const models = require('../models');
 
-db[constants.COLLECTION_USER] = models.User.users;
-db[constants.COLLECTION_COMPLAINT] = models.Complaint.complaints;
+db[config.constants.COLLECTION_USER] = models.User.users;
+db[config.constants.COLLECTION_COMPLAINT] = models.Complaint.complaints;
 
 module.exports = db;
 

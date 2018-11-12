@@ -1,15 +1,5 @@
 'user strict'
 
-
-/**
- * Customer Controller Function: That contains all common functions that are used in custom plug in
- * 
- * @module Customer
- * @description This module responsible for managing the customer related operatios
- * @copyright Copyright 2018 MingleMedia-RETL
- * @license 
- */
-
 const config = require('../config');
 const bcrypt = require('bcryptjs');
 

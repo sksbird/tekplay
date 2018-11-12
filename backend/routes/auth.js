@@ -4,6 +4,6 @@ const helpers = require('../helpers');
 const Models = require('../models');
 const Controllers = require('../controllers');
 
-module.exports = (router, guard) => {
+module.exports = (router, passport) => {
 
 }

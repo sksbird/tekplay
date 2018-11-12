@@ -2,7 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const guard = require('./config/auth.config');
+const passport = require('passport');
 const session = require('express-session');
 const config = require('./config/options.config');
 
@@ -12,10 +12,14 @@ app.use(cors());
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(expressSanitized.middleware());
 app.use(cookieParser());
 
 app.use(session({ secret: config.secret, resave: true, saveUninitialized: true }));
+
+//Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/auth.config').basic(passport);
 
 //auth Router
 const auth = express.Router();
@@ -24,12 +28,12 @@ app.use('/auth', auth);
 
 //User Router
 const userApi = express.Router();
-require('./routes/users')(userApi, guard);
+require('./routes/users')(userApi, passport);
 app.use('/api/users', userApi);
 
 //User Router
 const complaintApi = express.Router();
-require('./routes/complaints')(complaintApi, guard);
+require('./routes/complaints')(complaintApi, passport);
 app.use('/api/complaints', complaintApi);
 
 app.get('/', (req, res) => {
