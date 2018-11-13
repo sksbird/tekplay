@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './components/header/header.component';
@@ -13,6 +15,7 @@ import { SignupComponent } from './components/signup/signup.component';
 
 import { AuthGuard } from './guards/auth.guard';
 import { ComplaintService } from './services/complaint.service';
+import { UserService } from './services/user.service';
 
 const appRouters: Routes = [
   { path: '', redirectTo: '/complaints/list', pathMatch: 'full', canActivate: [AuthGuard] },
@@ -43,9 +46,12 @@ const appRouters: Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     RouterModule.forRoot(appRouters)
   ],
-  providers: [ComplaintService],
+  providers: [ComplaintService, UserService],
   bootstrap: [AppComponent]
 })
 

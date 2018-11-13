@@ -31,10 +31,15 @@ const userApi = express.Router();
 require('./routes/users')(userApi, passport);
 app.use('/api/users', userApi);
 
-//User Router
+//Complaint Router
 const complaintApi = express.Router();
 require('./routes/complaints')(complaintApi, passport);
 app.use('/api/complaints', complaintApi);
+
+//Auth Router
+const authApi = express.Router();
+require('./routes/auth')(authApi);
+app.use('/api/auth', authApi);
 
 app.get('/', (req, res) => {
     res.send('API is working...');

@@ -13,9 +13,10 @@ Complaint.prototype.getComplaints = (req, res) => {
 
     let input = {};
     input.select = null;
-    input.query = { 'is_deleted': false };
+    input.query = { 'isDeleted': false };
+    input.populate = { path: 'user', select: '-password' }; 
 
-    processor.get(db, config.constants.COLLECTION_COMPLAINT, input).then(result => {
+    processor.getPopulate(db, config.constants.COLLECTION_COMPLAINT, input).then(result => {
         res.status(result.statusCode).json({ response: true, count: result.data.length, data: result.data });
     }).catch(error => {
         res.status(error.statusCode).json({ response: false, error: error.error });
@@ -27,9 +28,10 @@ Complaint.prototype.getComplaint = (req, res) => {
 
     let input = {};
     input.select = null;
-    input.query = { '_id': req.value.params.id,  'is_deleted': false };
+    input.query = { '_id': req.value.params.id,  'isDeleted': false };
+    input.populate = { path: 'user', select: '-password' }; 
 
-    processor.getOne(db, config.constants.COLLECTION_COMPLAINT, input).then(result => {
+    processor.getOnePopulate(db, config.constants.COLLECTION_COMPLAINT, input).then(result => {
         res.status(result.statusCode).json({ response: true, data: result.data });
     }).catch(error => {
         res.status(error.statusCode).json({ response: false, error: error.error });

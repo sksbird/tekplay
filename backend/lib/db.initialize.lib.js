@@ -22,7 +22,9 @@ const db = {};
 const models = require('../models');
 
 db[config.constants.COLLECTION_USER] = models.User.users;
+db[config.constants.COLLECTION_AUTH] = models.User.auth;
 db[config.constants.COLLECTION_COMPLAINT] = models.Complaint.complaints;
+db[config.constants.COLLECTION_COMPLAINT_COMMENT] = models.Complaint.comments;
 
 module.exports = db;
 

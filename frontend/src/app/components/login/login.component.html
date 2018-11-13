@@ -4,22 +4,26 @@
             <div class="login-panel panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">Please Sign In</h3>
-                </div>
+                </div>                
                 <div class="panel-body">
-                    <form role="form">
+                    <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+                    <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmitted()">
                         <fieldset>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                            <div class="form-group" [ngClass]="{'has-error': controls.email.touched && controls.email.invalid}">
+                                <input class="form-control" placeholder="E-mail or Mobile No."  formControlName="email" required type="email" required autofocus>
+                                <span *ngIf="controls.email.invalid && controls.email.touched" class="help-block text-danger">email is required</span>
                             </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                            <div class="form-group" [ngClass]="{'has-error': controls.password.touched && controls.password.invalid}">
+                                <input class="form-control" placeholder="Password"  type="password" formControlName="password" required>
+                                <span *ngIf="controls.password.invalid && controls.password.touched" class="help-block text-danger">Password is required</span>
                             </div>
                             <div class="checkbox">
                                 <label>
                                     <input name="remember" type="checkbox" value="Remember Me">Remember Me
                                 </label>
                             </div>
-                            <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                            <button type="submit" class="btn btn-lg btn-success btn-block">Login</button>
+                            <p><a [routerLink]="['/signup']"  class="btn btn-lg btn-info btn-block">Sign Up</a></p>
                         </fieldset>
                     </form>
                 </div>
